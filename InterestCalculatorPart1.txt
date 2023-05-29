@@ -1,0 +1,51 @@
+	public static void main(String[] args) 
+	{
+        // display a welcome message
+        System.out.println("Welcome to the Interest Calculator\n");
+
+        // create the Scanner object
+        Scanner sc = new Scanner(System.in);
+
+        // perform conversions until choice isn't equal to "y" or "Y"
+        String choice = "y";
+        while (choice.equalsIgnoreCase("y")) {
+            // Without the typecast to double, these values:
+            // loanAmount = 4944.5
+            // interestRate = .01
+            // would result in a rounding error of $49.00
+
+            // get the loan information from the user
+            System.out.print("Enter loan amount:   ");
+            String loanAmountString = sc.nextLine();
+            System.out.print("Enter interest rate: ");
+            String interestRateString = sc.nextLine();
+            System.out.println();
+
+            // calculate the interest amount           
+            double loanAmount = Double.parseDouble(loanAmountString);
+            double interestRate = Double.parseDouble(interestRateString)/100;
+            double interest = loanAmount * interestRate;
+            interest = (double) Math.round(interest * 100) / 100;            
+
+            // create the NumberFormat object for percentages
+            NumberFormat percent = NumberFormat.getPercentInstance();
+            percent.setMaximumFractionDigits(3);
+
+            // create the NumberFormat object for currency 
+            NumberFormat currency = NumberFormat.getCurrencyInstance();
+
+            // display the results
+            System.out.println("Loan amount:         " + currency.format(loanAmount) );
+            System.out.println("Interest rate:       " + percent.format(interestRate) );
+            System.out.println("Interest:            " + currency.format(interest) );
+            System.out.println();
+
+            // see if the user wants to continue
+            System.out.print("Continue? (y/n): ");
+            choice = sc.nextLine();
+            System.out.println();
+        }
+	sc.close();
+	System.out.println("Bye!!!");
+
+	}

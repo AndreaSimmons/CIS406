@@ -1,0 +1,44 @@
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+        // display a welcome message
+        System.out.println("Tip Calculator");
+        System.out.println();  
+
+        // create the Scanner object
+        Scanner sc = new Scanner(System.in);
+        
+        // perform conversions until choice isn't equal to "y" or "Y"
+        String choice = "y";
+        while (choice.equalsIgnoreCase("y")) {
+            // get the input from the user
+            System.out.print("Cost of meal: ");
+            double cost = Double.parseDouble(sc.nextLine());
+            System.out.println();
+        
+            // create NumberFormat objects for percentages and currency
+            NumberFormat percentFormatter = NumberFormat.getPercentInstance();
+            NumberFormat moneyFormatter = NumberFormat.getCurrencyInstance();
+            
+            // Calculate tip - start at 15%, stop at 25%,increment by 5%.      
+            for (double percent = 0.15; percent <= 0.25; percent += 0.05) {
+            
+                // calculate tip and total
+                double tip = percent;
+                double amount = (double) Math.round(cost * tip * 100) / 100;
+                double total = cost + amount;
+            
+                // display tip and total
+                System.out.println(percentFormatter.format(percent));
+                System.out.println("Tip amount:    " + moneyFormatter.format(amount));
+                System.out.println("Total amount:  " + moneyFormatter.format(total));
+                
+            }
+            
+            // see if the user wants to continue
+            System.out.print("Continue? (y/n): ");
+            choice = sc.nextLine();
+            
+        } 
+        System.out.println("Bye!!!");
+	}
