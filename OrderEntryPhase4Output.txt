@@ -1,0 +1,41 @@
+Order Entry System
+
+Enter Invoice Date (mm/dd/yyyy): 05/31/2023
+Enter customer name: Mark Stone
+Enter street: 100 Main Street
+Enter city: Hilton Head
+Enter state: SC
+Enter zip code: 29926
+Enter Item Number or End to quit: item1
+Enter Item Description: desc1
+Enter Price: 45.78
+Enter Quantity Ordered: 7
+Enter Tax Percentage: .075
+Enter Discount Percentage: .01
+
+Enter Item Number or End to quit: item2
+Enter Item Description: desc2
+Enter Price: 100
+Enter Quantity Ordered: 5
+Enter Tax Percentage: .1
+Enter Discount Percentage: .1
+
+Enter Item Number or End to quit: end
+
+05/31/2023
+
+Mark Stone
+100 Main Street
+Hilton Head SC 29926
+
+Item	Desc	Price	Qty	Gross	Tax	Disc	Net Amount
+item1	desc1	$45.78	7	$320.46	$24.03	$3.20	$293.22
+item2	desc2	$100.00	5	$500.00	$50.00	$50.00	$400.00
+
+Total Items Purchased: 2
+Total Gross Amt: $820.46
+Total Tax Amt: $74.03
+Total Discount Amt: $53.20
+Total Net Amt: $693.22
+
+Thank you for shopping with us

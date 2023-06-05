@@ -1,0 +1,92 @@
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+	       	System.out.println("Order Entry System");
+	        System.out.println(); 
+
+	        // create the Scanner object
+			Scanner sc = new Scanner(System.in);
+			NumberFormat formatter = NumberFormat.getCurrencyInstance();
+			int totalItems = 0;
+			float totalGrossAmt = 0;
+			float totalTax = 0;
+			float totalDisc = 0;
+			float totalNetAmt = 0;
+			String invoice = "";
+			// enter invoice heading information
+			System.out.print("Enter Invoice Date (mm/dd/yyyy): ");
+			String invDate = sc.nextLine();
+			System.out.print("Enter customer name: ");
+			String custName = sc.nextLine();
+			System.out.print("Enter street: ");
+			String street = sc.nextLine();
+			System.out.print("Enter city: ");
+			String city = sc.nextLine();
+			System.out.print("Enter state: ");
+			String state = sc.next();
+			System.out.print("Enter zip code: ");
+			String zipCode = sc.next();
+			invoice = invDate + "\n\n" + custName + "\n" + street + "\n" + city + " " + state + " " + zipCode +"\n\n";
+	        invoice += "Item" + "\t" + "Desc" + "\t" + "Price" + "\t" + "Qty" + "\t" + "Gross" + "\t" + "Tax" + "\t" + "Disc" + "\t" + "Net Amount" + "\n";
+
+	        while (true)
+	        {
+		        System.out.print("Enter Item Number or End to quit: ");
+		        String itemNumber = sc.next();
+			    if(itemNumber.equalsIgnoreCase("end"))
+			    {
+			    	break;
+			    } 
+	
+		        System.out.print("Enter Item Description: ");
+		        String itemDescription = sc.next();
+		        
+		        System.out.print("Enter Price: ");
+		        float itemPrice = sc.nextFloat();
+				String priceString = formatter.format(itemPrice);
+		        System.out.print("Enter Quantity Ordered: ");
+		        int itemQtyOrdered = sc.nextInt();
+		        
+		        float itemGrossAmt = itemPrice * itemQtyOrdered;
+				String grossString = formatter.format(itemGrossAmt);
+
+		        System.out.print("Enter Tax Percentage: ");
+		        float itemTaxPercent = sc.nextFloat();
+		        
+		        float itemTaxAmt = itemGrossAmt * itemTaxPercent;
+		        String taxString = formatter.format(itemTaxAmt);
+		        System.out.print("Enter Discount Percentage: ");
+		        float itemDiscPercent = sc.nextFloat();
+		        
+		        float itemDiscAmt = itemGrossAmt * itemDiscPercent;
+		        String discString = formatter.format(itemDiscAmt);
+		        	        
+		        float itemNetAmt = itemGrossAmt - itemTaxAmt - itemDiscAmt;
+				String netString = formatter.format(itemNetAmt);
+				invoice += itemNumber + "\t" + itemDescription + "\t" + priceString + "\t" + itemQtyOrdered + "\t" + grossString + "\t" + taxString + "\t" + discString + "\t" + netString +"\n";
+
+
+		        System.out.println();
+		        // calculate totals
+		        totalItems += 1;
+		        totalGrossAmt += itemGrossAmt;
+		        totalTax += itemTaxAmt;
+		        totalDisc += itemDiscAmt;
+		        totalNetAmt += itemNetAmt;      
+	        
+	        }
+	        
+	        sc.close();
+	        // display totals
+	        invoice += "\n" + "Total Items Purchased: " + totalItems + "\n";
+	        invoice += "Total Gross Amt: " + formatter.format(totalGrossAmt) + "\n";
+	        invoice += "Total Tax Amt: " + formatter.format(totalTax) + "\n";
+	        invoice += "Total Discount Amt: " + formatter.format(totalDisc) + "\n";
+	        invoice += "Total Net Amt: " + formatter.format(totalNetAmt) + "\n";
+	        invoice +=  "\n" + "Thank you for shopping with us";
+	        System.out.println();
+			System.out.print(invoice);
+
+
+	}
+
