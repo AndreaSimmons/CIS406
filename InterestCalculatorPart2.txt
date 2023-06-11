@@ -1,0 +1,76 @@
+import java.util.Scanner;
+import java.text.NumberFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+public class InterestRateCalculatorPart2 {
+    
+	public static double getDouble(Scanner sc, String prompt) {
+        double d = 0;
+        boolean isValid = false;
+        while (!isValid) {
+            System.out.print(prompt);
+            try {
+                d = Double.parseDouble(sc.nextLine());
+                isValid = true;
+            } catch (Exception e) {
+                System.out.println("Error! Invalid numeric value. Try again.");
+            }
+        }
+        return d;
+    }
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	       // display a welcome message
+        System.out.println("Welcome to the Interest Calculator\n");
+
+        // create the Scanner object
+        Scanner sc = new Scanner(System.in);
+
+        // perform conversions until choice isn't equal to "y" or "Y"
+        String choice = "y";
+        while (choice.equalsIgnoreCase("y")) {
+            // Without the typecast to double, these values:
+            // loanAmount = 4944.5
+            // interestRate = .01
+            // would result in a rounding error of $49.00
+
+            // get the loan information from the user
+            //System.out.print("Enter loan amount:   ");
+            //String loanAmountString = sc.nextLine();
+           // System.out.print("Enter interest rate: ");
+            //String interestRateString = sc.nextLine();
+            //System.out.println();
+
+            // calculate the interest amount           
+            //double loanAmount = Double.parseDouble(loanAmountString);
+        	double loanAmount = getDouble(sc, "Enter loan amount: ");
+        	//double interestRate = Double.parseDouble(interestRateString)/100;
+            double interestRate = getDouble(sc, "Enter interest rate: ")/100;
+            double interest = loanAmount * interestRate;
+            interest = (double) Math.round(interest * 100) / 100;            
+
+            // create the NumberFormat object for percentages
+            NumberFormat percent = NumberFormat.getPercentInstance();
+            percent.setMaximumFractionDigits(3);
+
+            // create the NumberFormat object for currency 
+            NumberFormat currency = NumberFormat.getCurrencyInstance();
+
+            // display the results
+            System.out.println("Loan amount:         " + currency.format(loanAmount) );
+            System.out.println("Interest rate:       " + percent.format(interestRate) );
+            System.out.println("Interest:            " + currency.format(interest) );
+            System.out.println();
+
+            // see if the user wants to continue
+            System.out.print("Continue? (y/n): ");
+            choice = sc.nextLine();
+            System.out.println();
+        }
+	sc.close();
+	System.out.println("Bye!!!");
+
+	}
+
+}

@@ -1,0 +1,123 @@
+import java.util.Scanner;
+public class VacationDiaryPart2 
+{
+	public static boolean onlyDigits(String str, int n)
+    {
+        // Traverse the string from
+        // start to end
+        for (int i = 0; i < n; i++) {
+ 
+            // Check if character is
+            // not a digit between 0-9
+            // then return false
+            if (str.charAt(i) < '0'
+                || str.charAt(i) > '9') {
+                return false;
+            }
+        }
+          // If we reach here, that means
+          // all characters were digits.
+        return true;
+    }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		
+        // define the table and append the header rows
+        String table = "";
+        table += "================================================================\n";
+        table += "======================== Vacation Diary ========================\n";
+        table += "Date      \tCity      \tCountry   \tDays\tMode    \n";
+        table += "==========\t==========\t==========\t====\t========\n";
+
+        int maxLength = 10;
+
+        // create the Scanner object
+		Scanner sc = new Scanner(System.in);
+
+        // get the student data 
+        while (true)
+        {
+			System.out.print("Enter Date Vacation Started (mmddyyyy) or End to quit: ");
+		    String dateStarted = sc.next();
+		    if(dateStarted.equalsIgnoreCase("end"))
+		    {
+		    	break;
+		    }
+		    while (true)
+		    {
+		    	if (dateStarted.length() != 8 || onlyDigits(dateStarted,dateStarted.length()) == false)
+		    	{
+		    		System.out.println("Invalid date format. Please re-enter");
+		    		System.out.print("Enter Date Vacation Started (mmddyyyy): ");
+				    dateStarted = sc.next();
+		    	}
+		    	else
+		    	{
+		    		break;
+		    	}
+		    }
+		    dateStarted = dateStarted.substring(0,2) + "/" + dateStarted.substring(2,4) + "/" + dateStarted.substring(4);
+		    System.out.print("Enter City Visited: ");
+		    String city = sc.next();
+		    if (city.length() <= maxLength)
+		    {
+		    	city = city.format("%" + (-maxLength) + "s", city);        
+		    }
+		    else
+		    {
+		    	city = city.substring(0,maxLength);
+		    }
+		    System.out.print("Enter Country Visited: ");
+		    String country = sc.next();
+		    if (country.length() <= maxLength)
+		    {
+		    	country = country.format("%" + (-maxLength) + "s", country);        
+		    }
+		    else
+		    {
+		    	country = country.substring(0,maxLength);
+		    }
+		
+		    System.out.print("Enter number of days: ");
+		    int days = sc.nextInt();
+		    
+		    while (true)
+		    {
+		    if (days <= 0 || days > 30)
+		    	{
+		    		System.out.println("Days must be between 1 and 30");
+				    System.out.print("Enter number of days: ");
+				    days = sc.nextInt();
+		    	}
+		    	else
+		    	{
+		    		break;
+		    	}
+		    }
+		    System.out.print("Enter Mode of Travel (car, airplane, ship, train, bus): ");
+		    String travelMode = sc.next();
+		    while (true)
+		    {
+		    	if (travelMode.equals("car") || travelMode.equals("airplane") || travelMode.equals("ship") || travelMode.equals("train") || travelMode.equals("bus"))
+		    	{
+		    	break;
+		    	}
+		    else
+		    	{
+	    		System.out.println("Please enter a valid travel mode");
+			    System.out.print("Enter Mode of Travel (car, airplane, ship, train, bus): ");
+			    travelMode = sc.next();		    	   	
+		    	}
+		    }
+
+		    table += dateStarted + "\t" + city + "\t" + country + "\t" +  days + "\t" + travelMode + "\n";
+        }
+        table += "================================================================\n";
+        System.out.println();
+        System.out.println(table);
+        System.out.println("Bye!!!");
+
+	}
+
+}
